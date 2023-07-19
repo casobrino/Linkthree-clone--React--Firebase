@@ -20,7 +20,7 @@ root.render(
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/profile" element={<EditProfileView />} />
       <Route path="/signout" element={<Signout />} />
-      <Route path="u/:username" element={<PublicProfileView />} />
+      <Route path="/u/:username" element={<PublicProfileView />} />
       <Route path="choose-username" element={<ChooseUsername />} />
     </Routes>
   </BrowserRouter>
