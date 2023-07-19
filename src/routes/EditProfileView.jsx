@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import DashboardWrapper from "../components/dashboardWrapper";
 
 const EditProfileView = () => {
   return (
-    <div>EditProfileView</div>
-  )
-}
+    <DashboardWrapper>
+      <div>EditProfileView</div>
+    </DashboardWrapper>
+  );
+};
 
-export default EditProfileView
+export default EditProfileView;

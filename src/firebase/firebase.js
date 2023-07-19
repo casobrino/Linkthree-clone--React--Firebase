@@ -10,14 +10,14 @@ import {
 import {
   getFirestore,
   collection,
-  //addDoc,
+  addDoc,
   getDocs,
   doc,
   getDoc,
   query,
   where,
-  //deleteDoc,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -81,3 +81,49 @@ export async function getUserInfo(uid) {
     console.log(error);
   }
 }
+
+export const insertNewLink = async (link) => {
+  try {
+    const docRef = collection(db, "links");
+    const res = await addDoc(docRef, link);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export async function getLinks(uid) {
+  const links = [];
+  try {
+    const collectionRef = collection(db, "links");
+    const q = query(collectionRef, where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      const link = { ...doc.data() };
+      link.docId = doc.id;
+      links.push(link);
+    });
+    return links;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const updateLink = async (docId, link) => {
+  try {
+    const docRef = doc(db, "links", docId);
+    const res = await setDoc(docRef, link);
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteLink = async (id) => {
+  try {
+    const docRef = doc(db, "links", id);
+    const res = await deleteDoc(docRef);
+    return res;
+  } catch (error) {}
+};
