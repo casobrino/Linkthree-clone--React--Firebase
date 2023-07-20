@@ -40,7 +40,6 @@
     ]
   },
   "devDependencies": {
-    "babel": "^6.23.0",
     "gh-pages": "^5.0.0"
   }
 }
