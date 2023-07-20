@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Styles from "./link.module.css";
 
 const Link = ({ docId, title, url, onDelete, onUpdate }) => {
   const [currentTitle, setCurrentTitle] = useState(title);
@@ -36,11 +37,9 @@ const Link = ({ docId, title, url, onDelete, onUpdate }) => {
   };
 
   return (
-    <div>
-      <hr />
-      {/* <a href={url} target="_blank" rel="noopener noreferrer"> */}
-      <div>
-        <div>
+    <div className={Styles.link}>
+      <div className={Styles.linkInfo}>
+        <div className={Styles.linkTitle}>
           {editTitle ? (
             <>
               <input
@@ -54,12 +53,17 @@ const Link = ({ docId, title, url, onDelete, onUpdate }) => {
             </>
           ) : (
             <>
-              <div>{currentTitle}</div>
-              <button onClick={() => setEditTitle(true)}>Edit</button>
+              {currentTitle}
+              <button
+                className={Styles.btnEdit}
+                onClick={() => setEditTitle(true)}
+              >
+                <span className="material-icons">edit</span>
+              </button>
             </>
           )}
         </div>
-        <div>
+        <div className={Styles.linkUrl}>
           {editUrl ? (
             <>
               <input
@@ -73,14 +77,18 @@ const Link = ({ docId, title, url, onDelete, onUpdate }) => {
             </>
           ) : (
             <>
-              <div>{currentUrl}</div>
-              <button onClick={() => setEditUrl(true)}>Edit</button>
+              {currentUrl}
+              <button className={Styles.btnEdit}>
+                <span className="material-icons">edit</span>
+              </button>
             </>
           )}
         </div>
       </div>
-      <div>
-        <button onClick={handleDelete}>Delete</button>
+      <div className={Styles.linkActions}>
+        <button className={Styles.btnDelete} onClick={handleDelete}>
+          <span className="material-icons">delete</span>
+        </button>
       </div>
     </div>
   );

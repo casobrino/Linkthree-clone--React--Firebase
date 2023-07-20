@@ -148,3 +148,7 @@ export const getUserPublicProfileInfo = async (uid) => {
   const linksInfo = await getLinks(uid);
   return { profileInfo, linksInfo };
 };
+
+export const logOut = async () => {
+  await auth.signOut();
+};

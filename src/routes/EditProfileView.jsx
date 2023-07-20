@@ -7,6 +7,7 @@ import {
   updateUser,
   userProfilePhoto,
 } from "../firebase/firebase";
+import Styles from './editProfileView.module.css'
 
 const EditProfileView = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -83,18 +84,18 @@ const EditProfileView = () => {
     <DashboardWrapper>
       <div>
         <h1>Edit Profile Info</h1>
-        <div>
+        <div className={Styles.profilePictureContainer}>
           <div>
             <img src={profileImg} alt="" width="100px" />
           </div>
           <div>
-            <button onClick={handleOpenFilePicker}>
+            <button className="btn" onClick={handleOpenFilePicker}>
               Choose new profile picture
             </button>
             <input
+            className={Styles.fileInput}
               ref={fileRef}
               type="file"
-              style={{ display: "none" }}
               onChange={handleChangeFile}
             />
           </div>

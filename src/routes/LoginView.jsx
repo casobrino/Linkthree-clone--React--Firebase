@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { auth } from "../firebase/firebase";
-import AuthProvider from "../components/authProvider";
 import {
   GoogleAuthProvider,
   //onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import AuthProvider from "../components/authProvider";
+import { auth } from "../firebase/firebase";
+import Styles from "./LoginView.module.css";
 export default function LoginView() {
   const navigate = useNavigate();
   //const [currentUser, setCurrentUser] = useState(null);
@@ -25,8 +26,7 @@ export default function LoginView() {
     const googleProvider = new GoogleAuthProvider();
     const singWithGoogle = async (googleProvider) => {
       try {
-        const res = await signInWithPopup(auth, googleProvider);
-        console.log(res);
+        await signInWithPopup(auth, googleProvider);
       } catch (error) {
         console.error(" HUBO UN ERROR ", error);
       }
@@ -47,7 +47,12 @@ export default function LoginView() {
   if (state === 4) {
     return (
       <div>
-        <button onClick={handleOnClick}>Login with Google</button>
+        <div className={Styles.loginView}>
+        <h1 style={{display: "inline-block"}} >Linkthree</h1>
+          <button className={Styles.provider} onClick={handleOnClick}>
+            Login with Google
+          </button>
+        </div>
       </div>
     );
   }

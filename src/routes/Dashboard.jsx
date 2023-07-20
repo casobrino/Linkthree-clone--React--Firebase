@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from "uuid";
 import AuthProvider from "../components/authProvider";
 import DashboardWrapper from "../components/dashboardWrapper";
+import Link from "../components/link";
 import {
   deleteLink,
   getLinks,
   insertNewLink,
   updateLink,
 } from "../firebase/firebase";
-import Link from "../components/link";
+import Style from "./Dashboard.module.css";
+import StyleLinks from "../components/link.module.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
@@ -32,7 +34,6 @@ const Dashboard = () => {
     setState(2);
     const resLinks = await getLinks(user.uid);
     setLinks([...resLinks]);
-    console.log(resLinks);
   };
 
   const handleUserNotRegister = (user) => {
@@ -100,28 +101,32 @@ const Dashboard = () => {
     <DashboardWrapper>
       <div>
         <h1>Dashboard</h1>
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={title}
-              onChange={(e) => settitle(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="url">Url</label>
-            <input
-              type="text"
-              name="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-          </div>
-          <input type="submit" value={"Crear new link"} />
+        <form className={Style.entryContainer} onSubmit={handleFormSubmit}>
+          <label className="label" htmlFor="title">
+            Title
+          </label>
+          <input
+            className={"input"}
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => settitle(e.target.value)}
+          />
+
+          <label className="label" htmlFor="url">
+            Url
+          </label>
+          <input
+            className="input"
+            type="text"
+            name="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
+
+          <input className="btn" type="submit" value={"Crear new link"} />
         </form>
-        <div>
+        <div className={StyleLinks.linksContaienr}>
           {links.map((link) => (
             <Link
               key={link.docId}

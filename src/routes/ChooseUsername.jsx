@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AuthProvider from "../components/authProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { existsUsername, updateUser } from "../firebase/firebase";
+import Styles from "./ChooseUsername.module.css";
 
 const ChooseUsername = () => {
   const navigate = useNavigate();
@@ -52,12 +53,13 @@ const ChooseUsername = () => {
 
   if (state === 3 || state === 5) {
     return (
-      <div>
-        <h1>Bien venida... {currentUser.displayName}</h1>
+      <div className={Styles.chooseUsernameContainer}>
+        <h1>Bienvenido... {currentUser.displayName}</h1>
         {state === 5 && <p>El nombre de usuaruio ya existe, elige otro</p>}
         <p>Para terminar el proceso proporciona un nombre de usuario</p>
         <div>
           <input
+            className="input"
             onChange={handleInputUsername}
             type="text"
             value={username}
@@ -65,7 +67,9 @@ const ChooseUsername = () => {
           />
         </div>
         <div>
-          <button onClick={handleContinue}>Continuar</button>
+          <button className="btn" onClick={handleContinue}>
+            Continuar
+          </button>
         </div>
         {error && <p>{error}</p>}
       </div>
@@ -74,9 +78,9 @@ const ChooseUsername = () => {
 
   if (state === 6) {
     return (
-      <div>
+      <div className={Styles.chooseUsernameContainer}>
         <h1>Cuenta ya registrada, Ve al daashboard</h1>
-        <Link to={'/dashboard'}>Continuar</Link>
+        <Link to={"/dashboard"}>Continuar</Link>
       </div>
     );
   }
