@@ -5,10 +5,10 @@ import {
   getProfilePhotoUrl,
   getUserPublicProfileInfo,
 } from "../firebase/firebase";
-
+import PublicLink from "../components/publicLink";
 const PublicProfileView = () => {
   const params = useParams();
-  const [profile, setProfile] = useState(undefined);
+  const [profile, setProfile] = useState();
   const [url, setUrl] = useState("");
   /**
    * State
@@ -38,6 +38,7 @@ const PublicProfileView = () => {
           setProfile(userInfo);
           setUrl(url);
           setState(6);
+          console.log("asda", profile);
         } else {
           setState(7);
         }
@@ -66,7 +67,13 @@ const PublicProfileView = () => {
       <div>
         <img src={url} alt="" />
       </div>
-      //TODO: Despleagr la informacion
+      <h2>{profile.profileInfo.username}</h2>
+      <h3>{profile.profileInfo.displayName}</h3>
+      <div>
+        {profile.linksInfo.map((item) => (
+          <PublicLink key={item.id} linkUrl={item.url} linkTitle={item.title} />
+        ))}
+      </div>
     </div>
   );
 };

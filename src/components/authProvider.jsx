@@ -36,7 +36,6 @@ const AuthProvider = ({
           });
           onUserNotRegister(user);
         }
-        console.log(user.displayName);
       } else {
         onUserNotLoggedIn(user);
       }
