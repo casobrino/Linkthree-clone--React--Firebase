@@ -91,8 +91,10 @@ const Dashboard = () => {
         onUserNotLoggedIn={handleUserNotLoggedIn}
         onUserNotRegister={handleUserNotRegister}
       >
+      <div className="loader" >
         <div className="lds-dual-ring"></div>
         <div>Loading... </div>
+      </div>
       </AuthProvider>
     );
   }

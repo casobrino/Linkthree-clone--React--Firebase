@@ -63,8 +63,10 @@ export default function LoginView() {
       onUserNotLoggedIn={handleUserNotLoggedIn}
       onUserNotRegister={handleUserNotRegister}
     >
-      <div className="lds-dual-ring"></div>
-      <div>Loading... </div>
+      <div className="loader" >
+        <div className="lds-dual-ring"></div>
+        <div>Loading... </div>
+      </div>
     </AuthProvider>
   );
 }
